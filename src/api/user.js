@@ -2,7 +2,6 @@
  * 用户相关请求模块
  */
 import request from '@/utils/request'
-import store from '@/store'
 
 export const login = (data) => {
   return request({
@@ -27,7 +26,6 @@ export const sendSms = (mobile) => {
  * 获取用户自己的信息
  */
 export const getUserInfo = () => {
-  console.log(store.state.user)
   return request({
     method: 'GET',
     url: '/v1_0/user'
@@ -37,5 +35,15 @@ export const getUserInfo = () => {
     //   //       token的数据格式：Bearer token数据，注意 Bearer 后面有个空格
     //   Authorization: `Bearer ${store.state.user.token}`
     // }
+  })
+}
+
+/**
+ * 获取用户频道列表
+ */
+export const getUserChannels = () => {
+  return request({
+    method: 'GET',
+    url: '/v1_0/user/channels'
   })
 }
