@@ -112,10 +112,15 @@ export default {
 
       // 2. 请求登录
       try {
+        console.log('验证失败', this.user)
         const { data } = await login(this.user)
         this.$store.commit('setUser', data.data)
         this.$toast.success('登录成功')
+        // 登录成功，跳转回原来页面
+        // back 的方式不严谨，后面讲功能优化的时候再说
+        this.$router.back()
       } catch (err) {
+        console.log('验证失败', err)
         this.$toast.fail('登录失败，手机号或验证码错误')
       }
     },
@@ -162,10 +167,9 @@ export default {
         // width: 152px;
         height: 46px;
         background-color: #ededed;
-      }
-      .van-button__text {
         font-size: 22px;
-        color: #666666;
+        color: #666;
+        line-height: 22px;
       }
     }
   }
